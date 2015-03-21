@@ -1,57 +1,243 @@
 <!doctype html>
+<html>
 <head>
   <meta charset="utf-8">
-
-  <title>My Parse App</title>
-  <meta name="description" content="My Parse App">
+  <title>Concierge Service</title>
+  <meta name="description" content="Concierge Service">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.5.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway">
+
 </head>
-
 <body>
-  
-  <div id="main">
-    <h1>You're ready to use Parse!</h1>
+	<div id="header">
+		<img src="images/BackgroundPhoto.jpg" class="headerBg" />
 
-    <p>Read the documentation and start building your JavaScript app:</p>
+		<span class="logo">
+			<img height="60" src="images/Logo.png">
+		</span>
+		<div class="nav">
+			<ul>
+				<li><a href="#">Signup</a> | <a href="#">Login</a></li>
+				<li><a href="#">Support</a></li>
+				<li><a href="#">Become a Host</a></li>
+				<li><a href="#"><span class="book-button">Book Now</span></a></li>
+			</ul>
+		</div>
+		<div class="center-logo">
+		<img src="images/ConciergeIconWht.png"><br/>
+		<span style="font-size:x-large;color: white">Concierge Service</span>
 
-    <ul>
-      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
+		</div>
+	</div>
+	
+	<div class="formBox">
+		<h1>Fill out our concierge form and we will find the perfect host available to host you on your travel dates</h1>
+		<br/>
+		<form  id="conciergeForm" onsubmit="saveConciergeRequest(); return false;">
+			<table>
+				<tr>
+					<td align="right">
+						<label>Which country are you visiting?*</label>
+					</td>
+					<td align="left">
+						<select id="country" name="country">
+							<option value="" disabled selected>Select a country</option>
+							<option>Indonesia
+							<option>Thailand
+							<option>Japan
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label>Which city are you visiting?*</label>
+					</td>
+					<td align="left">
+						<select id="city" name="city">
+							<option value="" disabled selected>Select a city</option>
+							<option>Jakartha
+							<option>Bali
+							<option>Bangkok
+							<option>Chang Mai
+							<option>Tokyo
+							<option>Kyoto							
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label>Date</label>
+					</td>
+					<td align="left">
+						<input type="text" id="date" name="date" style="width:200px;" placeholder="Enter date here">
+					</td>
+				</tr>				
+				<tr>
+					<td align="right">
+						<label>Additional dates<br/><span class="subtext">Are you available on other dates?</span></label>
+					</td>
+					<td align="left">
+						<input type="text" id="addl_dates" name="addl_dates" style="width:200px;" placeholder="Please include add'l dates">
+					</td>
+				</tr>					<tr>
+					<td align="right">
+						<label>Number of guests</label>
+					</td>
+					<td align="left">
+						<select id="guests" name="guests">
+							<option selected>1
+							<option>2
+							<option>3
+							<option>4
+							<option>5
+							<option>6
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label>Experience Type<br/><span class="subtext">Choose between these private culinary<br/>with your host</span></label>
+					</td>
+					<td align="left">
+						<div id="meal" class="experience-button"><img src="images/MealIcon.png" style="height:60px;"/><br/>Meal</div>&nbsp;
+						<div id="mealAndClass" class="experience-button"><img src="images/MealCookingClassIcon.png" style="height:60px;"/><br/>Cooking Class</div>&nbsp;
+						<div id="mealAndClassAndMarket" class="experience-button"><img src="images/MealCookingClassMarketTourIcon.png" style="height:60px;"/><br/>Market Tour + cooking class + meal</div>&nbsp;
+						<input type="hidden" id="experience_type" name="experience_type" value="meal">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Preferred Meal Time*</td>
+					<td align="left" style="padding-right: 10px;">
+						<label><input type="radio" name="mealTime" value="lunch"> Lunch </label>&nbsp;
+						<label><input type="radio" name="mealTime" value="dinner"> Dinner </label>&nbsp;
+						<label><input type="radio" name="mealTime" value="either" checked> Either </label>
+					</td>
+				</tr>		
+				<tr>
+					<td align="right">Allergies/Dietary Restrictions*</td>
+					<td align="left" style="padding-right: 10px;">
+						<label><input type="radio" name="isDietRestricted" value="yes"> Yes </label>&nbsp;
+						<label><input type="radio" name="isDietRestricted" value="no" checked> No </label>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label>Allergies/Dietary Restrictions<br/><span class="subtext">If yes, list all restrictions</span></label>
+					</td>
+					<td align="left">
+						<input type="text" id="dietRestrictions" name="dietRestrictions" style="width:400px;" placeholder="E.g. Shellfish, lactose intolerance, shellfish">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label>Spice Preference*</label>
+					</td>
+					<td align="left">
+						<select id="spice" name="spice">
+							<option value="" disabled selected>Select a preference</option>
+							<option>Mild
+							<option>Medium
+							<option>Spicy
+							<option>As Spicy as the natives!
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Alcohol<br/><span  class="subtext">Interested in alcohol for add'l cost</span></td>
+					<td align="left" style="padding-right: 10px;">
+						<label><input type="radio" name="isAlcohol" value="yes"> Yes </label>&nbsp;
+						<label><input type="radio" name="isAlcohol" value="no" checked> No </label>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label>How many are drinking?*</label>
+					</td>
+					<td align="left">
+						<select id="numberDrinking" name="numberDrinking">
+							<option value="" disabled selected>Select a how many</option>
+							<option>1
+							<option>2
+							<option>3
+							<option>4
+							<option>5
+							<option>6
+						</select>
+					</td>
+				</tr>
+				</table><br/><br/>
+         		<h1>Sign in to save your details and review and submit your reservation request</h1>
 
-    <div style="display:none" class="error">
-      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
-    </div>
+				<input type="submit" class="submit-button" value="SUBMIT" />
+         </form>
 
-    <div style="display:none" class="success">
-      <p>We've also just created your first object using the following code:</p>
-      
-        <code>
-          var TestObject = Parse.Object.extend("TestObject");<br/>
-          var testObject = new TestObject();<br/>
-          testObject.save({foo: "bar"});
-        </code>
-    </div>
-  </div>
+	</div>
 
-  <script type="text/javascript">
-    Parse.initialize("oybafD0Nd8ABnrGVh0LsZl9sqckEvvqYi6muG5K9", "Qwe3wQODrKXegIZNB3RNd5raO0hVq0zigJSqh3R1");
-    
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}, {
-      success: function(object) {
-        $(".success").show();
-      },
-      error: function(model, error) {
-        $(".error").show();
-      }
-    });
-  </script>
+	
+
 </body>
 
+<script type="text/javascript">
+    Parse.initialize("oybafD0Nd8ABnrGVh0LsZl9sqckEvvqYi6muG5K9", "Qwe3wQODrKXegIZNB3RNd5raO0hVq0zigJSqh3R1");
+
+    function saveConciergeRequest() {
+		var ConciergeRequest = Parse.Object.extend("ConciergeRequest");
+		var conciergeRequest = new ConciergeRequest();
+		 
+		//alert($("#country").val())
+		//alert($("#city").val())
+ 		//alert($('input[name=dietRestrict]:checked', '#conciergeForm').val())
+
+		 
+		conciergeRequest.set("country", $("#country").val() );
+		conciergeRequest.set("city", $("#city").val());
+		conciergeRequest.set("guests", $("#guests").val());
+		conciergeRequest.set("date", $("#date").val());
+		conciergeRequest.set("addl_dates", $("#addl_dates").val());
+		conciergeRequest.set("experience_type", $("#experience_type").val());
+		conciergeRequest.set("meal_time", $('input[name=mealTime]:checked', '#conciergeForm').val());
+		conciergeRequest.set("is_diet_restricted", $('input[name=isDietRestricted]:checked', '#conciergeForm').val());
+		conciergeRequest.set("diet_restrictions", $("#dietRestrictions").val());
+		conciergeRequest.set("spice", $("#spice").val());
+		conciergeRequest.set("is_alcohol", $('input[name=isAlcohol]:checked', '#conciergeForm').val());
+		conciergeRequest.set("number_drinking", $("#numberDrinking").val());
+
+		conciergeRequest.save(null, {
+		  success: function(conciergeRequest) {
+		    // Execute any logic that should take place after the object is saved.
+		    //alert('New object created with objectId: ' + conciergeRequest.id);
+		    window.location.href = "admin.html";
+		  },
+		  error: function(conciergeRequest, error) {
+		    // Execute any logic that should take place if the save fails.
+		    // error is a Parse.Error with an error code and message.
+		    alert('Failed to create new object, with error code: ' + error.message);
+		  }
+		});
+	}
+	
+	$("#meal").click(function() {
+	 	$('input[name="experience_type"]').val('meal');
+	 	$("#meal").css('backgroundColor','#ffae2b');
+	 	$("#mealAndClass").css('backgroundColor','#ffffff');
+	 	$("#mealAndClassAndMarket").css('backgroundColor','#ffffff');
+	});
+	$("#mealAndClass").click(function() {
+	 	$('input[name="experience_type"]').val('meal + class');
+	 	$("#meal").css('backgroundColor','#ffffff');
+	 	$("#mealAndClass").css('backgroundColor','#ffae2b');
+	 	$("#mealAndClassAndMarket").css('backgroundColor','#ffffff');	
+	 	});
+	 	
+	$("#mealAndClassAndMarket").click(function() {
+	 	$('input[name="experience_type"]').val('meal + class + market');
+	 	$("#meal").css('backgroundColor','#ffffff');
+	 	$("#mealAndClass").css('backgroundColor','#ffffff');
+	 	$("#mealAndClassAndMarket").css('backgroundColor','#ffae2b');
+	});
+</script>
 </html>

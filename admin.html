@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Concierge Admin</title>
+  <meta name="description" content="Concierge Admin Page">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.5.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway">
+  <style>
+	  
+  	table, th, td {
+		text-align: center;
+		padding: 0 20px;
+		border: 1px solid black;
+		padding: 10px;
+		margin: 10px;
+	}
+	
+	th {
+		background-color:#cec9c9;
+	}
+</style>
+  <script type="text/javascript">
+    Parse.initialize("oybafD0Nd8ABnrGVh0LsZl9sqckEvvqYi6muG5K9", "Qwe3wQODrKXegIZNB3RNd5raO0hVq0zigJSqh3R1");
+	var ConciergeRequest = Parse.Object.extend("ConciergeRequest");
+	var query = new Parse.Query(ConciergeRequest);
+	var myData='';
+	query.find({
+	  success: function(results) {
+	  //alert("Successfully retrieved " + results.length + " requests.");
+		for (var i = 0; i < results.length; i++) { 
+		  var object = results[i];
+		  myData+='<tr><td>' + 
+		  			object.id + '</td><td>' + 
+		  			object.get('country') + '</td><td>' + 
+		  			object.get('city') + '</td><td>' + 
+		  			object.get('guests') + '</td><td>' + 
+		  			object.get('date') + '</td><td>' + 
+		  			object.get('addl_dates') + '</td><td>' + 
+		  			object.get('experience_type') + '</td><td>' + 
+		  			object.get('meal_time') + '</td><td>' + 
+		  			object.get('is_diet_restricted') + '</td><td>' + 
+		  			object.get('diet_restrictions') + '</td><td>' + 
+		  			object.get('spice') + '</td><td>' + 
+		  			object.get('is_alcohol') + '</td><td>' + 
+		  			object.get('number_drinking') + '</td></tr>';
+		  			//alert(myData);
+
+		}
+		  (function($) {
+		      $('#admin-table').append(myData);
+		  })(jQuery);
+		},
+	  error: function(error) {
+	    alert("Error: " + error.code + " " + error.message);
+	  }
+	});    
+    
+</script>
+</head>
+<body>
+	<div class="admin">
+		<table id="admin-table">
+		<tr>
+		  <th>ObjectId</th>
+		  <th>Country</th>
+		  <th>City</th>
+		  <th># Guests</th>
+		  <th>Date</th>
+		  <th>Add'l Dates</th>
+		  <th>Experience Type</th>
+		  <th>Meal Time</th>
+		  <th>Is Diet Restricted?</th>
+		  <th>Diet Restrictions</th>
+		  <th>Spice</th>
+		  <th>Drinks Alcohol</th>
+		  <th>Number Drinking</th>
+		</tr>
+		</table>
+	</div>
+</body>
+</html>
+

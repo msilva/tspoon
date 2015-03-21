@@ -1,0 +1,123 @@
+body {
+    text-align: center;
+    padding: 0 0;
+    font-size: 14px;
+    color: #303030;
+	font-family: 'Raleway', serif;
+}
+
+.main {
+    text-align: center;
+    padding: 0 20px;
+}
+/* header */
+#header {
+	background: black;
+	height:300px;
+	opacity: 0.9;
+}
+
+.headerBg {
+    position: absolute;
+	left:0px;
+    top:-300px;
+    width:100%;
+    height:600px;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.logo {
+	position: absolute;
+    left:40px;
+    top:20px;
+}
+
+.center-logo {
+    padding-top: 60px;
+    padding-bottom: 60px
+}
+
+/* Navigation */
+.nav {
+	position: absolute;
+	right:40px;
+	top:20px;
+	color: white;
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+        display: inline-block;
+		margin-right:20px;
+		margin-left:20px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.book-button {
+	color: #ffae2b;
+	border-style: solid;
+    border-width: 1px;
+    padding:10px 20px;
+}
+
+
+/* form */
+.formBox  {
+    text-align: center;
+    width: 800px;
+    margin: 20px auto;
+}
+
+
+.formBox h1 {
+	font-size:small;
+	color:#898989;
+}
+.formBox table {
+    width: 100%;
+    padding: 100px;
+}
+
+.formBox td {
+	padding: 10px;
+}
+
+.experience-button {
+	float:left; 
+	margin:5px;
+	padding: 5px;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #898989;
+}
+
+.experience-button:hover { background-color: #ffae2b; }
+
+.submit-button {
+	color: white;
+	background-color: #ffae2b;
+	border-style: none;
+    padding:10px 40px;
+}
+
+/* text */
+.subtext {
+    font-size: 10px;
+    color:#898989;
+    
+
+
+
+}
+
